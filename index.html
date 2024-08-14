@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - ToDoアプリ</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <v-app>
+    <v-content>
+      <v-container>
+        <v-row
+          class="text-h3 mb-3 mt-3"
+          justify="center"
+          >
+          天気コーデ
+        </v-row>
+        <v-row
+          class="mb-3 mt-3"
+          align="center"
+          justify="center"
+          >
+          <v-col cols="4">
+            <v-select
+                  class="ml-6 mr-6"
+                  v-model="Temperature"
+                  :items="['寒い','快適','暑い']"    
+                  label="天気"
+                  placeholder="Select 天気..."
+                  outlined
+            >
+          </v-col>
+          <v-col cols="4">
+            <v-text-field
+                  class="ml-6 mr-6"
+                  v-model:value="Outfit"                         
+                  label="Outfit"
+                  placeholder="Enter Outfit..."
+                  outlined
+            >
+          </v-col>
+          <v-col cols="4">
+            <v-text-field
+                  class="ml-6 mr-6"
+                  v-model:value="Imageurl"                         
+                  label="Image URL"
+                  placeholder="Enter Image URL..."
+                  outlined
+            >
+          </v-col>
+        </v-row>
+        <v-row
+          class="mb-3 mt-3"
+          align="center"
+          justify="center"
+          >
+          Entered Data - Temperature: {{ Temperature }}, Outfit: {{ Outfit }}, Image URL: {{ Imageurl }}
+          <v-btn v-on:click="addData"               
+               dark
+               small               
+               color="indigo"
+               >Register to DB
+               </v-btn>
+        </v-row>
+        <v-row
+          class="mb-3 mt-3"
+          justify="center"
+          > 
+          <v-btn v-on:click="readData"                 
+                 rounded
+                 >Display Current Entries</v-btn>
+        </v-row>
+        <v-row 
+          class="mb-3 mt-3"
+          justify="center"
+          v-for="data in dataList">
+          Temperature:{{ data.Temperature }}, Outfit:{{ data.Outfit }}, Image URL:{{ data.Imageurl }}
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
