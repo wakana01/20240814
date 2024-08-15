@@ -7,6 +7,7 @@ const app = new Vue({
     Item: '', // パラメーター「Item」格納変数
     Imageurl: '', // パラメーター「Imageurl」格納変数
     dataList: [], // データ表示用配列
+    dataList2: [],
   },
   methods: {
     // DBにデータを追加する関数
@@ -44,12 +45,12 @@ const app = new Vue({
       this.dataList = response.data.List;
     },
 
-      readData2: asyc function() {
+      readData2: async function() {
           const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2');
 
           console.log(response.data);
 
-          this.dataList = response.data.List;
+          this.dataList2 = response.data.List2;
       }
 
   },
