@@ -32,23 +32,13 @@ const app = new Vue({
       console.log(response.data);
 
     },
-      // データベースからデータを取得する関数
-      readData: async function () {
-          try {
-              const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
-              console.log("API Response for SELECT:", response.data);
-
-
-              this.dataList = response.data.List;
-              console.log("Data List after assignment:", this.dataList);
-          } catch (error) {
-              console.error("データ取得中にエラーが発生しました:", error);
-          }
+    // データベースからデータを取得する関数
+    readData: async function() {
       //SELECT用のAPIを呼び出し      
-      
+      const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/SELECT');
       
       //結果をコンソールに出力
-      
+      console.log(response.data);
       
       //結果リストを表示用配列に代入
       this.dataList = response.data.List;
