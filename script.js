@@ -69,15 +69,7 @@ const app = new Vue({
           console.log(response.data);
 
           this.dataList4 = response.data.List4;
-      },
-      fetchDataBasedOnTemperature: function () {
-          if (this.Temperature === '寒い') {
-              this.readData2();
-          } else if (this.Temperature === '快適') {
-              this.readData3();
-          } else if (this.Temperature === '暑い') {
-              this.readData4();
-          }
       }
+
   },
 });
