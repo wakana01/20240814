@@ -39,7 +39,7 @@
                         <v-col cols="4">
                             <v-text-field class="ml-6 mr-6"
                                           v-model:value="Imageurl"
-                                          label="Image URL"
+                                          label="Outfit"
                                           placeholder="Enter Image URL..."
                                           outlined>
                         </v-col>
@@ -73,7 +73,8 @@
                                   :items="['寒い','快適','暑い']"
                                   label="気温"
                                   placeholder="Select 気温..."
-                                  outlined><v-btn v-on:click="readData2"rounded>検索</v-btn>
+                                  outlined>
+                        </v-select><v-btn v-on:click="readData2"rounded>検索</v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
