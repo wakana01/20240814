@@ -74,12 +74,27 @@
                                   label="天気"
                                   placeholder="Select 天気..."
                                   outlined></v-select>
-                        <v-btn v-on:click="readData2"
+                        <v-btn v-on:click="fetchDataBasedOnTemperature"
                                rounded>検索</v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
+                           v-if="Temperature === '寒い'"
                            v-for="data in dataList2">
+                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                        <img height=200 width=200 v-bind:src="data.Imageurl">
+                    </v-row>
+                    <v-row class="mb-3 mt-3"
+                           justify="center"
+                           v-if="Temperature === '快適'"
+                           v-for="data in dataList3">
+                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                        <img height=200 width=200 v-bind:src="data.Imageurl">
+                    </v-row>
+                    <v-row class="mb-3 mt-3"
+                           justify="center"
+                           v-if="Temperature === '暑い'"
+                           v-for="data in dataList4">
                         Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
                         <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
