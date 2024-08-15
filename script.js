@@ -35,7 +35,7 @@ const app = new Vue({
     // データベースからデータを取得する関数
     readData: async function() {
       //SELECT用のAPIを呼び出し      
-      const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/SELECT');
+      const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
       
       //結果をコンソールに出力
       console.log(response.data);
