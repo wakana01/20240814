@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "favi": "^1.0.0"
-  }
+  "name": "github2",
+  "version": "1.0.0",
+  "description": "\"# 20240814\"",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
