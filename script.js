@@ -53,7 +53,7 @@ const app = new Vue({
           console.log(response.data);
 
           this.dataList2 = response.data.List2;
-      }
+      },
 
       readData3: async function () {
           const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT3');
@@ -61,7 +61,7 @@ const app = new Vue({
           console.log(response.data);
 
           this.dataList3 = response.data.List3;
-      }
+      },
 
       readData4: async function () {
           const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT4');
@@ -69,7 +69,7 @@ const app = new Vue({
           console.log(response.data);
 
           this.dataList4 = response.data.List4;
-      }
+      },
 
   },
 });
