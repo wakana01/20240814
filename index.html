@@ -39,7 +39,7 @@
                         <v-col cols="4">
                             <v-text-field class="ml-6 mr-6"
                                           v-model:value="Imageurl"
-                                          label="Outfit"
+                                          label="Image URL"
                                           placeholder="Enter Image URL..."
                                           outlined>
                         </v-col>
@@ -78,7 +78,7 @@
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
-                           v-for="data in dataList2">
+                           v-for="data in dataList3">
                         Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
                         <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
