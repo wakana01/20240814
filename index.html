@@ -64,6 +64,7 @@
                            justify="center"
                            v-for="data in dataList">
                         Temperature:{{ data.Temperature }}, Outfit:{{ data.Outfit }}, Image URL:{{ data.Imageurl }}
+                        <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
                 </v-container>
             </v-content>
