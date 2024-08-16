@@ -47,11 +47,16 @@
                                           placeholder="Enter Image URL..."
                                           outlined>
                         </v-col>
+                        <v-btn v-on:click="addData"
+                               dark
+                               small
+                               color="indigo">
+                            <i class="fas fa-plus-circle"></i>Add
+                        </v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            align="center"
                            justify="center">
-                        Entered Data - Temperature: {{ Temperature }}, Item: {{ Item }}, Image URL: {{ Imageurl }}
                         <v-btn v-on:click="addData"
                                dark
                                small
