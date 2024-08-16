@@ -24,7 +24,7 @@
                         Climate Closet
                     </v-row>
                     <v-row class="mb-3 mt-3 justify-center align-center">
-                        <v-col cols="2" class="input-field">
+                        <v-col cols="3" class="input-field">
                             <v-select v-model="Temperature"
                                       :items="['寒い','快適','暑い']"
                                       label="Temperature"
@@ -39,7 +39,7 @@
                                           outlined>
                             </v-text-field>
                         </v-col>
-                        <v-col cols="2" class="input-field">
+                        <v-col cols="5" class="input-field">
                             <v-text-field v-model:value="Imageurl"
                                           label="Image URL"
                                           placeholder="Enter Image URL..."
@@ -47,9 +47,7 @@
                             </v-text-field>
                         </v-col>
                         <v-btn v-on:click="addData"
-                               dark
-                               small
-                               class="mt-2"
+                               rounded                               
                                color=#b0c4de>
                             <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
