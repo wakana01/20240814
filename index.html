@@ -27,8 +27,8 @@
                         <v-col cols="2" class="input-field">
                             <v-select v-model="Temperature"
                                       :items="['寒い','快適','暑い']"
-                                      label="気温"
-                                      placeholder="Select 気温..."
+                                      label="Temperature"
+                                      placeholder="Select Temperature..."
                                       outlined>
                             </v-select>
                         </v-col>
@@ -49,20 +49,22 @@
                         <v-btn v-on:click="addData"
                                dark
                                small
-                               class="mt-4"
+                               class="mt-2"
                                color=#b0c4de>
                             <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center">
-                        <v-select class="ml-6 mr-6"
-                                  v-model="Temperature"
+                        <v-select v-model="Temperature"
                                   :items="['寒い','快適','暑い']"
-                                  label="気温"
-                                  placeholder="Select 気温..."
+                                  label="Temperature"
+                                  placeholder="Select Temperature..."
                                   outlined>
-                        </v-select><v-btn v-on:click="readData2" rounded>検索</v-btn>
+                        </v-select>
+                        <v-btn v-on:click="readData2"
+                               rounded>検索
+                        </v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
@@ -73,7 +75,8 @@
                     <v-row class="mb-3 mt-3"
                            justify="center">
                         <v-btn v-on:click="readData"
-                               rounded>Display</v-btn>
+                               rounded>Display
+                        </v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
