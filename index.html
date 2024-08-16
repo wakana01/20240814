@@ -23,7 +23,7 @@
                            justify="center">
                         Climate Closet
                     </v-row>
-                    <v-row class="mb-3 mt-3 right-align">
+                    <v-row class="mb-3 mt-3 justify-center align-center">
                         <v-col cols="2" class="input-field">
                             <v-select v-model="Temperature"
                                       :items="['寒い','快適','暑い']"
@@ -49,6 +49,7 @@
                         <v-btn v-on:click="addData"
                                dark
                                small
+                               class="mt-4"
                                color=#b0c4de>
                             <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
