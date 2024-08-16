@@ -8,8 +8,7 @@ const app = new Vue({
     Imageurl: '', // パラメーター「Imageurl」格納変数
     dataList: [], // データ表示用配列
     dataList2: [],
-    dataList3: [],
-    dataList4: [],
+
   },
   methods: {
     // DBにデータを追加する関数
@@ -47,28 +46,27 @@ const app = new Vue({
       this.dataList = response.data.List;
     },
 
-      readData2: async function() {
-          const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2');
+    //SERECT2用
+      readData2: async function () {
+
+
+          //Temperatureの入力チェック（空白なら終了）
+          if (!this.Temperature) {
+              console.log("Temperatureが入力されていません");
+              return;
+          }
+
+          //POSTメソッドで送るパラメーターを作成
+          const param = {
+              Temperature: this.Temperature,
+          };
+
+          //SELECT2用のAPIを呼び出し  
+          const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
 
           console.log(response.data);
 
-          this.dataList2 = response.data.List2;
-      },
-
-      readData3: async function () {
-          const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT3');
-
-          console.log(response.data);
-
-          this.dataList3 = response.data.List3;
-      },
-
-      readData4: async function () {
-          const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT4');
-
-          console.log(response.data);
-
-          this.dataList4 = response.data.List4;
+          this.dataList2 = response.data.List;
       },
 
   },
