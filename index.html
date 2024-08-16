@@ -20,7 +20,7 @@
     }
 
     .v-btn:hover {
-        background-color: #a2b6cc;
+        background-color: #778899;
     }
 </style>
 </head>
@@ -34,38 +34,36 @@
                            justify="center">
                         Climate Closet
                     </v-row>
-                    <v-row class="mb-3 mt-3"
-                           align="center"
-                           justify="center">
-                        <v-col cols="4">
-                            <v-select class="ml-6 mr-6"
-                                      v-model="Temperature"
+                    <v-row class="mb-3 mt-3 right-align">
+                        <v-col cols="2" class="input-field">
+                            <v-select v-model="Temperature"
                                       :items="['寒い','快適','暑い']"
                                       label="気温"
                                       placeholder="Select 気温..."
                                       outlined>
+                            </v-select>
                         </v-col>
-                        <v-col cols="4">
-                            <v-text-field class="ml-6 mr-6"
-                                          v-model:value="Item"
+                        <v-col cols="2" class="input-field">
+                            <v-text-field v-model:value="Item"
                                           label="Item"
                                           placeholder="Enter Item..."
                                           outlined>
+                            </v-text-field>
                         </v-col>
-                        <v-col cols="4">
-                            <v-text-field class="ml-6 mr-6"
-                                          v-model:value="Imageurl"
+                        <v-col cols="2" class="input-field">
+                            <v-text-field v-model:value="Imageurl"
                                           label="Image URL"
                                           placeholder="Enter Image URL..."
                                           outlined>
+                            </v-text-field>
                         </v-col>
                         <v-btn v-on:click="addData"
                                dark
                                small
-                               color="indigo">
+                               color=#b0c4de>
                             <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
-                    </v-row>                  
+                    </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center">
                         <v-select class="ml-6 mr-6"
