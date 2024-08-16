@@ -10,7 +10,7 @@
 
 <style>
     body {
-        height: 100%;
+        
         background-color: #f0f8ff;
     }
 
@@ -82,7 +82,7 @@
                     <v-row class="mb-3 mt-3"
                            justify="center"
                            v-for="data in dataList">
-                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
                         <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
                 </v-container>
