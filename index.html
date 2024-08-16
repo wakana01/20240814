@@ -9,7 +9,19 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
 
 <style>
+    .v-btn {
+        padding: 10px 15px;
+        background-color: #b0c4de;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
+    .v-btn:hover {
+        background-color: #a2b6cc;
+    }
 </style>
 </head>
 <body>
@@ -53,17 +65,7 @@
                                color="indigo">
                             <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           align="center"
-                           justify="center">
-                        <v-btn v-on:click="addData"
-                               dark
-                               small
-                               color="indigo">
-                            <i class="fas fa-plus-circle"></i>Add
-                        </v-btn>
-                    </v-row>
+                    </v-row>                  
                     <v-row class="mb-3 mt-3"
                            justify="center">
                         <v-select class="ml-6 mr-6"
