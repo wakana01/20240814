@@ -2,11 +2,15 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - ToDoアプリ</title>
+  <title>Outfit</title>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
 <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
 
+<style>
+
+</style>
 </head>
 <body>
     <!-- partial:index.partial.html -->
@@ -16,7 +20,7 @@
                 <v-container>
                     <v-row class="text-h3 mb-3 mt-3"
                            justify="center">
-                        天気コーデ
+                        Climate Closet
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            align="center"
@@ -52,19 +56,8 @@
                                dark
                                small
                                color="indigo">
-                            Register to DB
+                            <i class="fas fa-plus-circle"></i>Add
                         </v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center">
-                        <v-btn v-on:click="readData"
-                               rounded>Display Current Entries</v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center"
-                           v-for="data in dataList">
-                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
-                        <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center">
@@ -74,11 +67,22 @@
                                   label="気温"
                                   placeholder="Select 気温..."
                                   outlined>
-                        </v-select><v-btn v-on:click="readData2"rounded>検索</v-btn>
+                        </v-select><v-btn v-on:click="readData2" rounded>検索</v-btn>
                     </v-row>
                     <v-row class="mb-3 mt-3"
                            justify="center"
                            v-for="data in dataList2">
+                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                        <img height=200 width=200 v-bind:src="data.Imageurl">
+                    </v-row>
+                    <v-row class="mb-3 mt-3"
+                           justify="center">
+                        <v-btn v-on:click="readData"
+                               rounded>Display</v-btn>
+                    </v-row>
+                    <v-row class="mb-3 mt-3"
+                           justify="center"
+                           v-for="data in dataList">
                         Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
                         <img height=200 width=200 v-bind:src="data.Imageurl">
                     </v-row>
@@ -96,4 +100,6 @@ https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script>
     <script src="./script.js"></script>
 
 </body>
+
+
 </html>
