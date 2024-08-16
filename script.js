@@ -62,7 +62,7 @@ const app = new Vue({
           };
 
           //SELECT2用のAPIを呼び出し  
-          const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
+          const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
 
           console.log(response.data);
 
