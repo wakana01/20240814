@@ -81,15 +81,14 @@
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
-                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center">
                                 <img height=200 width=200 v-bind:src="data.Imageurl">
                             </v-row>
                         </v-tab-item>
 
                         <!-- Display All Tab -->
                         <v-tab-item>
-                            <v-row class="mb-3 mt-3" justify="center">
-                            </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData" rounded>
                                     Display
