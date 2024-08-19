@@ -23,6 +23,7 @@
             min-height: 100%;
             background-color: #f0f4f8; /* 背景色を適用 */
         }
+
     </style>
 </head>
 <body>
@@ -35,10 +36,7 @@
                     </v-row>
 
                     <!-- タブの追加 -->
-                    <v-tabs 
-                            v-model="tab"
-                            align-tabs="center"
-                            color="deep-purple-accent-4">
+                    <v-tabs v-model="tab">
                         <v-tab> Add Outfit </v-tab>
                         <v-tab> Search Outfit </v-tab>
                         <v-tab> Display All </v-tab>
@@ -60,6 +58,8 @@
                                     <v-text-field v-model:value="Imageurl" label="Image URL" placeholder="Enter Image URL..." outlined>
                                     </v-text-field>
                                 </v-col>
+                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="addData" rounded>
                                     <i class="fa-solid fa-plus"></i>Add
                                 </v-btn>
@@ -69,8 +69,13 @@
                         <!-- Search Outfit Tab -->
                         <v-tab-item>
                             <v-row class="mb-3 mt-3" justify="center">
-                                <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
-                                </v-select>
+                                <v-col cols="5" class="input-field">
+                                    <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
+                                    </v-select>
+                                </v-col>
+                                
+                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData2" rounded>
                                     <i class="fa-solid fa-magnifying-glass"></i>検索
                                 </v-btn>
@@ -83,6 +88,8 @@
 
                         <!-- Display All Tab -->
                         <v-tab-item>
+                            <v-row class="mb-3 mt-3" justify="center">
+                            </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData" rounded>
                                     Display
