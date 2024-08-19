@@ -96,8 +96,9 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList">
                                 Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
-                                <br>
-                                <img height=200 width=200 v-bind:src="data.Imageurl">
+                                <v-col cols="auto">
+                                    <img height=200 width=200 v-bind:src="data.Imageurl">
+                                </v-col>
                             </v-row>
                         </v-tab-item>
                     </v-tabs-items>
