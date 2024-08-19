@@ -32,7 +32,7 @@
             <v-content>
                 <v-container>
                     <v-row class="text-h3 mb-5 mt-5" justify="center">
-                        <i class="fa-solid fa-temperature-three-quarters"></i>Climate Closet<i class="fa-solid fa-shirt"></i>
+                        <i class="fa-solid fa-temperature-three-quarters"></i>Climate Closet
                     </v-row>
 
                     <!-- タブの追加 -->
@@ -61,7 +61,7 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="addData" rounded>
-                                    <i class="fa-solid fa-plus"></i>Add
+                                    <i class="fa-solid fa-plus"></i>
                                 </v-btn>
                             </v-row>
                         </v-tab-item>
@@ -82,8 +82,9 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
                                 Temperature:{{ data.Temperature }}, Item:{{ data.Item }}  
-                                <br>
-                                <img height=200 width=200 v-bind:src="data.Imageurl">
+                                <v-col cols="auto">
+                                    <img height=200 width=200 v-bind:src="data.Imageurl">
+                                </v-col>
                             </v-row>
                         </v-tab-item>
 
@@ -91,7 +92,7 @@
                         <v-tab-item>
                             <v-row class="mb-5 mt-5" justify="center">
                                 <v-btn v-on:click="readData" rounded>
-                                    <i class="fa-solid fa-list"></i>Display
+                                    Display
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList">
