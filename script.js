@@ -40,19 +40,21 @@ const app = new Vue({
             console.log(response.data);
             this.dataList2 = response.data.List;
         },
-        deleteData: async function () {
-            if (!this.Temperature) {
-                console.log("Temperatureが入力されていません");
+        deleteData: async function (index) {
+            const itemToDelete = this.dataList2[index];
+            if (!itemToDelete) {
+                console.log("削除対象が見つかりません");
                 return;
             }
             const param = {
-                Temperature: this.Temperature,
-                Item: this.Item,
-                Imageurl: this.Imageurl
+                Temperature: itemToDelete.Temperature,
+                Item: itemToDelete.Item,
+                Imageurl: itemToDelete.Imageurl
             };
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
             console.log(response.data);
+            // 削除が成功した場合、ローカルのdataList2からアイテムを削除
+            this.dataList2.splice(index, 1);
         },
-
     },
 });

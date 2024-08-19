@@ -62,15 +62,16 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>検索
                                 </v-btn>
                             </v-row>
-                            <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
-                                Item:{{ data.Item }}
+                            <v-row class="mb-3 mt-3" justify="center" v-for="(data, index) in dataList2" :key="index">
+                                Item: {{ data.Item }}
                                 <v-col cols="auto">
-                                    <img height=200 width=200 v-bind:src="data.Imageurl">
+                                    <img height="200" width="200" v-bind:src="data.Imageurl">
                                 </v-col>
-                                <v-btn v-on:click="deleteData" rounded>
-                                    削除
+                                <v-btn v-on:click="deleteData(index)" rounded>
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </v-btn>
                             </v-row>
+
                         </v-tab-item>
 
                         <!-- Display All Tab -->
