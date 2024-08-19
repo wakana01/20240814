@@ -41,7 +41,7 @@ const app = new Vue({
             this.dataList2 = response.data.List;
         },
         deleteData: async function (index) {
-            const itemToDelete = this.dataList2[index];
+            const itemToDelete = this.dataList[index];
             if (!itemToDelete) {
                 console.log("削除対象が見つかりません");
                 return;
@@ -54,7 +54,7 @@ const app = new Vue({
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
             console.log(response.data);
             // 削除が成功した場合、ローカルのdataList2からアイテムを削除
-            this.dataList2.splice(index, 1);
+            this.dataList.splice(index, 1);
         },
     },
 });
