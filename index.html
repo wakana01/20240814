@@ -1,104 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Outfit</title>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
-<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
+    <meta charset="UTF-8">
+    <title>Outfit</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
+    <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8; /* 背景色を設定 */
+        }
 
-<style>
-    body {
-        
-        background-color: #f0f8ff;
-    }
+        #app {
+            min-height: 100%;
+        }
 
-</style>
+        .v-application--wrap {
+            min-height: 100%;
+            background-color: #f0f4f8; /* 背景色を適用 */
+        }
+    </style>
 </head>
 <body>
-    <!-- partial:index.partial.html -->
     <div id="app">
         <v-app>
             <v-content>
                 <v-container>
-                    <v-row class="text-h3 mb-3 mt-3"
-                           justify="center">
-                        Climate Closet
+                    <v-row class="text-h3 mb-3 mt-3" justify="center">
+                        <i class="fa-solid fa-temperature-three-quarters"></i>Climate Closet<i class="fa-solid fa-shirt"></i>
                     </v-row>
-                    <v-row class="mb-3 mt-3 justify-center align-center">
-                        <v-col cols="3" class="input-field">
-                            <v-select v-model="Temperature"
-                                      :items="['寒い','快適','暑い']"
-                                      label="Temperature"
-                                      placeholder="Select Temperature..."
-                                      outlined>
-                            </v-select>
-                        </v-col>
-                        <v-col cols="2" class="input-field">
-                            <v-text-field v-model:value="Item"
-                                          label="Item"
-                                          placeholder="Enter Item..."
-                                          outlined>
-                            </v-text-field>
-                        </v-col>
-                        <v-col cols="5" class="input-field">
-                            <v-text-field v-model:value="Imageurl"
-                                          label="Image URL"
-                                          placeholder="Enter Image URL..."
-                                          outlined>
-                            </v-text-field>
-                        </v-col>
-                        <v-btn v-on:click="addData"
-                               rounded                               
-                               color=#b0c4de>
-                            <i class="fas fa-plus-circle"></i>Add
-                        </v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center">
-                        <v-select v-model="Temperature"
-                                  :items="['寒い','快適','暑い']"
-                                  label="Temperature"
-                                  placeholder="Select Temperature..."
-                                  outlined>
-                        </v-select>
-                        <v-btn v-on:click="readData2"
-                               rounded>検索
-                        </v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center"
-                           v-for="data in dataList2">
-                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
-                        <img height=200 width=200 v-bind:src="data.Imageurl">
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center">
-                        <v-btn v-on:click="readData"
-                               rounded>Display
-                        </v-btn>
-                    </v-row>
-                    <v-row class="mb-3 mt-3"
-                           justify="center"
-                           v-for="data in dataList">
-                        Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
-                        <img height=200 width=200 v-bind:src="data.Imageurl">
-                    </v-row>
+
+                    <!-- タブの追加 -->
+                    <v-tabs v-model="tab">
+                        <v-tab> Add Outfit </v-tab>
+                        <v-tab> Search Outfit </v-tab>
+                        <v-tab> Display All </v-tab>
+                    </v-tabs>
+
+                    <v-tabs-items v-model="tab">
+                        <!-- Add Outfit Tab -->
+                        <v-tab-item>
+                            <v-row class="mb-3 mt-3 justify-center align-center">
+                                <v-col cols="3" class="input-field">
+                                    <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
+                                    </v-select>
+                                </v-col>
+                                <v-col cols="2" class="input-field">
+                                    <v-text-field v-model:value="Item" label="Item" placeholder="Enter Item..." outlined>
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="5" class="input-field">
+                                    <v-text-field v-model:value="Imageurl" label="Image URL" placeholder="Enter Image URL..." outlined>
+                                    </v-text-field>
+                                </v-col>
+                                <v-btn v-on:click="addData" rounded>
+                                    <i class="fa-solid fa-plus"></i>Add
+                                </v-btn>
+                            </v-row>
+                        </v-tab-item>
+
+                        <!-- Search Outfit Tab -->
+                        <v-tab-item>
+                            <v-row class="mb-3 mt-3" justify="center">
+                                <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
+                                </v-select>
+                                <v-btn v-on:click="readData2" rounded>
+                                    <i class="fa-solid fa-magnifying-glass"></i>検索
+                                </v-btn>
+                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
+                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}, Image URL:{{ data.Imageurl }}
+                                <img height=200 width=200 v-bind:src="data.Imageurl">
+                            </v-row>
+                        </v-tab-item>
+
+                        <!-- Display All Tab -->
+                        <v-tab-item>
+                            <v-row class="mb-3 mt-3" justify="center">
+                                <v-btn v-on:click="readData" rounded>
+                                    Display
+                                </v-btn>
+                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList">
+                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
+                                <img height=200 width=200 v-bind:src="data.Imageurl">
+                            </v-row>
+                        </v-tab-item>
+                    </v-tabs-items>
                 </v-container>
             </v-content>
         </v-app>
     </div>
-    <!-- partial -->
-    <script src='
-https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
-    <script src='
-https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
-    <script src='
-https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script>
     <script src="./script.js"></script>
-
 </body>
-
-
 </html>

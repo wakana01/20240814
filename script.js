@@ -1,73 +1,44 @@
 const app = new Vue({
-  el: '#app', // Vueが管理する一番外側のDOM要素
-  vuetify: new Vuetify(),
-  data: {
-    // Vue内部で使いたい変数は全てこの中に定義する
-    Temperature: '', // パラメーター「Temperature」格納変数
-    Item: '', // パラメーター「Item」格納変数
-    Imageurl: '', // パラメーター「Imageurl」格納変数
-    dataList: [], // データ表示用配列
-    dataList2: [],
-
-  },
-  methods: {
-    // DBにデータを追加する関数
-    addData: async function() {
-
-      //Temperatureの入力チェック（空白なら終了）
-      if(!this.Temperature){
-        console.log("Temperatureが入力されていません");
-        return;
-      }
-      
-      //POSTメソッドで送るパラメーターを作成
-      const param = {
-        Temperature : this.Temperature,
-        Item: this.Item,
-        Imageurl : this.Imageurl
-      };
-      
-      //INSERT用のAPIを呼び出し
-          const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/INSERT', param);
-      
-      //結果をコンソールに出力
-      console.log(response.data);
-
+    el: '#app',
+    vuetify: new Vuetify(),
+    data: {
+        tab: 0, // タブの状態を管理するための変数
+        Temperature: '',
+        Item: '',
+        Imageurl: '',
+        dataList: [],
+        dataList2: [],
     },
-    // データベースからデータを取得する関数
-    readData: async function() {
-      //SELECT用のAPIを呼び出し      
-        const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
-      
-      //結果をコンソールに出力
-      console.log(response.data);
-      
-      //結果リストを表示用配列に代入
-      this.dataList = response.data.List;
+    methods: {
+        addData: async function () {
+            if (!this.Temperature) {
+                console.log("Temperatureが入力されていません");
+                return;
+            }
+            const param = {
+                Temperature: this.Temperature,
+                Item: this.Item,
+                Imageurl: this.Imageurl
+            };
+            const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/INSERT', param);
+            console.log(response.data);
+        },
+        readData: async function () {
+            const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
+            console.log(response.data);
+            this.dataList = response.data.List;
+        },
+        readData2: async function () {
+            if (!this.Temperature) {
+                console.log("Temperatureが入力されていません");
+                return;
+            }
+            const param = {
+                Temperature: this.Temperature,
+            };
+            const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
+            console.log(response.data);
+            this.dataList2 = response.data.List;
+        },
     },
-
-    //SERECT2用
-      readData2: async function () {
-
-
-          //Temperatureの入力チェック（空白なら終了）
-          if (!this.Temperature) {
-              console.log("Temperatureが入力されていません");
-              return;
-          }
-
-          //POSTメソッドで送るパラメーターを作成
-          const param = {
-              Temperature: this.Temperature,
-          };
-
-          //SELECT2用のAPIを呼び出し  
-          const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
-
-          console.log(response.data);
-
-          this.dataList2 = response.data.List;
-      },
-
-  },
 });
