@@ -40,5 +40,19 @@ const app = new Vue({
             console.log(response.data);
             this.dataList2 = response.data.List;
         },
+        deleteData: async function () {
+            if (!this.Temperature) {
+                console.log("Temperatureが入力されていません");
+                return;
+            }
+            const param = {
+                Temperature: this.Temperature,
+                Item: this.Item,
+                Imageurl: this.Imageurl
+            };
+            const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
+            console.log(response.data);
+        },
+
     },
 });

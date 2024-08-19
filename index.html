@@ -55,7 +55,7 @@
                                     <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
                                     </v-select>
                                 </v-col>
-                                
+
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData2" rounded>
@@ -63,10 +63,15 @@
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
-                                Item:{{ data.Item }}  
+                                Item:{{ data.Item }}
                                 <v-col cols="auto">
                                     <img height=200 width=200 v-bind:src="data.Imageurl">
                                 </v-col>
+                            </v-row>
+                            <v-row class="mb-3 mt-3" justify="center">
+                                <v-btn v-on:click="deleteData" rounded>
+                                    削除
+                                </v-btn>
                             </v-row>
                         </v-tab-item>
 
