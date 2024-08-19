@@ -31,7 +31,7 @@
         <v-app>
             <v-content>
                 <v-container>
-                    <v-row class="text-h3 mb-3 mt-3" justify="center">
+                    <v-row class="text-h3 mb-5 mt-5" justify="center">
                         <i class="fa-solid fa-temperature-three-quarters"></i>Climate Closet<i class="fa-solid fa-shirt"></i>
                     </v-row>
 
@@ -81,21 +81,22 @@
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
-                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}                            </v-row>
-                            <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
+                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}  
+                                <br>
                                 <img height=200 width=200 v-bind:src="data.Imageurl">
                             </v-row>
                         </v-tab-item>
 
                         <!-- Display All Tab -->
                         <v-tab-item>
-                            <v-row class="mb-3 mt-3" justify="center">
+                            <v-row class="mb-5 mt-5" justify="center">
                                 <v-btn v-on:click="readData" rounded>
-                                    Display
+                                    <i class="fa-solid fa-list"></i>Display
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList">
                                 Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
+                                <br>
                                 <img height=200 width=200 v-bind:src="data.Imageurl">
                             </v-row>
                         </v-tab-item>
