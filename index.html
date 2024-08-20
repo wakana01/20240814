@@ -7,6 +7,10 @@
     <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
+
+    <style>
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -59,7 +63,7 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData2" rounded>
-                                    <i class="fa-solid fa-magnifying-glass"></i>検索
+                                    <i class="fa-solid fa-magnifying-glass"></i>SEARCH
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center" v-for="data in dataList2">
@@ -77,14 +81,16 @@
                                     Display
                                 </v-btn>
                             </v-row>
-                            <v-row class="mb-3 mt-3" justify="center" v-for="(data, index) in dataList" :key="index ">
-                                Temperature:{{ data.Temperature }}, Item:{{ data.Item }}
-                                <v-col cols="auto">
-                                    <img height=200 width=200 v-bind:src="data.Imageurl">
+                            <v-row class="mb-3 mt-3" justify="center">
+                                <v-col cols="4" v-for="(data, index) in dataList" :key="index">
+                                    Temperature: {{ data.Temperature }}, Item: {{ data.Item }}
+                                    <v-col cols="auto">
+                                        <img height=200 width=200 v-bind:src="data.Imageurl">
+                                    </v-col>
+                                    <v-btn v-on:click="deleteData(index)" rounded>
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </v-btn>
                                 </v-col>
-                                <v-btn v-on:click="deleteData(index)" rounded>
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </v-btn>
                             </v-row>
                         </v-tab-item>
                     </v-tabs-items>
