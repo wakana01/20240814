@@ -66,14 +66,17 @@
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
-                                <v-col cols="4" v-for="data in dataList2">
-                                    Item: {{ data.Item }}
-                                    <v-col cols="auto">
-                                        <img height=200 width=200 v-bind:src="data.Imageurl">
-                                    </v-col>
+                                <v-col cols="4" v-for="data in dataList2" :key="data.Item">
+                                    <v-card>
+                                        <v-img :src="data.Imageurl" height="200px"></v-img>
+                                        <v-card-title class="text-center">
+                                            Item: {{ data.Item }}
+                                        </v-card-title>
+                                    </v-card>
                                 </v-col>
                             </v-row>
                         </v-tab-item>
+
 
 
                         <!-- Display All Tab -->
@@ -85,13 +88,19 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-col cols="4" v-for="(data, index) in dataList" :key="index">
-                                    Temperature: {{ data.Temperature }}, Item: {{ data.Item }}
-                                    <v-col cols="auto">
-                                        <img height=200 width=200 v-bind:src="data.Imageurl">
-                                    </v-col>
-                                    <v-btn v-on:click="deleteData(index)" rounded style="margin-left: 20px;">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </v-btn>
+                                    <v-card>
+                                        <v-img :src="data.Imageurl" height="200px"></v-img>
+                                        <v-card-title class="text-center">
+                                            Temperature: {{ data.Temperature }}<br>
+                                            Item: {{ data.Item }}
+                                        </v-card-title>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn v-on:click="deleteData(index)" rounded style="margin-left: 20px;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
                                 </v-col>
                             </v-row>
                         </v-tab-item>
