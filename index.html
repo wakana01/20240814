@@ -9,8 +9,30 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
 
     <style>
+        /* Instagram風のフォントスタイル */
+        .instagram-card {
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
 
+        /* タイトルのスタイル */
+        .instagram-title {
+            font-weight: 600; /* 太字にする */
+            font-size: 1.2rem; /* フォントサイズを調整 */
+            color: #262626; /* Instagram風の濃いグレー */
+        }
+
+        /* アクション部分のスタイル */
+        .instagram-actions {
+            font-size: 0.9rem; /* 少し小さめのフォント */
+            color: #8e8e8e; /* 少し薄いグレー */
+        }
+
+        /* ボタンのスタイル */
+        v-btn {
+            font-weight: 500; /* ボタンのフォントを少し太めに */
+        }
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -88,13 +110,14 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-col cols="4" v-for="(data, index) in dataList" :key="index">
-                                    <v-card>
+                                    <v-card max-width="300px" class="instagram-card">
+                                        <!-- Instagram風のクラスを追加 -->
                                         <v-img :src="data.Imageurl" height="200px" contain></v-img>
-                                        <v-card-title class="text-center">
+                                        <v-card-title class="text-center instagram-title">
                                             Temperature: {{ data.Temperature }}<br>
                                             Item: {{ data.Item }}
                                         </v-card-title>
-                                        <v-card-actions>
+                                        <v-card-actions class="instagram-actions">
                                             <v-spacer></v-spacer>
                                             <v-btn v-on:click="deleteData(index)" rounded style="margin-left: 20px;">
                                                 <i class="fa-solid fa-trash-can"></i>
