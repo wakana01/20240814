@@ -89,12 +89,14 @@
                                     <v-col cols="auto">
                                         <img height=200 width=200 v-bind:src="data.Imageurl">
                                     </v-col>
+                                    <!-- 削除ボタンを画像の直後に配置 -->
                                     <v-btn v-on:click="deleteData(index)" rounded>
                                         <i class="fa-solid fa-trash-can"></i>
                                     </v-btn>
                                 </v-col>
                             </v-row>
                         </v-tab-item>
+
                     </v-tabs-items>
                 </v-container>
             </v-content>
