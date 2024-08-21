@@ -80,16 +80,18 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 1rem 0;
-            background-color: #f7f7f7;
-            border-top: 1px solid #dbdbdb;
-            font-size: 0.8rem;
-            color: #8e8e8e;
+            position: fixed; /* 絶対位置を固定 */
+            bottom: 0; /* 画面の下部に配置 */
+            width: 100%; /* 幅を100%に */
+            text-align: center; /* テキストを中央に配置 */
+            padding: 1rem 0; /* 上下にパディングを追加 */
+            background-color: #f7f7f7; /* 背景色 */
+            border-top: 1px solid #dbdbdb; /* 上にボーダーを追加 */
+            font-size: 0.8rem; /* フォントサイズ */
+            color: #8e8e8e; /* テキストカラー */
+            z-index: 10; /* 他の要素より前面に表示 */
         }
+
     </style>
 </head>
 <body>
