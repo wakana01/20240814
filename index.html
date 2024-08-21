@@ -2,81 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Outfit</title>
+    <title>Climate Closet - Home</title>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
     <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
-
     <style>
-        /* Instagram風のフォントスタイル */
-        .instagram-card {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            border: 1px solid #dbdbdb; /* Instagramのカード風に */
-            border-radius: 10px; /* カードの角を丸く */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影をつける */
+        /* 既存のスタイルは省略 */
+
+        /* ホーム画面のレイアウト */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
 
-        /* タイトルのスタイル */
-        .instagram-title {
-            font-weight: 600; /* 太字にする */
-            font-size: 1rem; /* フォントサイズを調整 */
-            color: #262626; /* Instagram風の濃いグレー */
+        .home-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #262626;
+            margin-bottom: 2rem;
         }
 
-        /* アクション部分のスタイル */
-        .instagram-actions {
-            font-size: 0.9rem; /* 少し小さめのフォント */
-            color: #8e8e8e; /* 少し薄いグレー */
+        .home-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
-        /* ダイアログのスタイル */
-        .v-dialog__content--active {
-            background-color: #000000a3; /* ダイアログの背景色を暗く */
-        }
-
-        /* タブのスタイル */
-        .v-tab {
-            text-transform: uppercase; /* 大文字にする */
-            font-weight: 500; /* 太字にする */
-        }
-
-        .v-tab--active {
-            color: #262626; /* アクティブなタブの色 */
-            border-bottom: 2px solid #262626; /* アクティブなタブの下に線を引く */
-        }
-
-        /* Instagram風のボタンスタイル */
-        .instagram-btn {
-            font-size: 0.9rem; /* 少し小さめのフォントサイズ */
-            font-weight: 500; /* 太字にする */
-            text-transform: capitalize; /* テキストを大文字にしない */
-            border-radius: 24px; /* 角を丸くする */
-            padding: 8px 16px; /* 内側の余白を調整 */
-            background-color: white; /* 背景色を白くする */
-            color: #b0b0b0; /* テキストの色を薄いグレーにする */
-            border: 1px solid #e0e0e0; /* ボタンの枠を薄いグレーにする */
-        }
-
-            .instagram-btn:hover {
-                background-color: #f0f0f0; /* ホバー時の背景色 */
-                color: #000; /* ホバー時のテキスト色 */
-                border-color: #d0d0d0; /* ホバー時のボーダー色 */
+            .home-buttons .instagram-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
             }
 
-            .instagram-btn .v-icon {
-                color: #b0b0b0; /* アイコンの色を薄いグレーにする */
-            }
-
-            /* Instagram風のタイトルスタイル */
-        .instagram-title-row {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            font-size: 2rem; /* 大きめのフォントサイズ */
-            font-weight: 700; /* 太字にする */
-            color: #262626; /* 濃いグレー */
-            text-align: center; /* テキストを中央揃えにする */
-            margin: 2rem 0; /* 上下にマージンを追加 */
-            letter-spacing: 0.5px; /* 少し文字間隔を広げる */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #f7f7f7;
+            border-top: 1px solid #dbdbdb;
+            font-size: 0.8rem;
+            color: #8e8e8e;
         }
     </style>
 </head>
@@ -84,128 +53,21 @@
     <div id="app">
         <v-app>
             <v-content>
-                <v-container>
-                    <v-row class="instagram-title-row">
-                        <v-icon large>mdi-thermometer</v-icon>
-                        Climate Closet
-                    </v-row>
-
-                    <!-- タブの追加 -->
-                    <v-tabs v-model="tab" background-color="white">
-                        <v-tab>Add Outfit</v-tab>
-                        <v-tab>Search Outfit</v-tab>
-                        <v-tab>Display All</v-tab>
-                    </v-tabs>
-
-                    <v-tabs-items v-model="tab">
-                        <!-- Add Outfit Tab -->
-                        <v-tab-item>
-                            <v-row class="mb-3 mt-3 justify-center align-center">
-                                <v-col cols="3" class="input-field">
-                                    <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
-                                    </v-select>
-                                </v-col>
-                                <v-col cols="2" class="input-field">
-                                    <v-text-field v-model="Item" label="Item" placeholder="Enter Item..." outlined>
-                                    </v-text-field>
-                                </v-col>
-                                <v-col cols="5" class="input-field">
-                                    <v-text-field v-model="Imageurl" label="Image URL" placeholder="Enter Image URL..." outlined>
-                                    </v-text-field>
-                                </v-col>
-                            </v-row>
-                            <v-row class="mb-3 mt-3" justify="center">
-                                <v-btn v-on:click="addData" rounded class="instagram-btn">
-                                    <v-icon left>mdi-plus</v-icon>
-                                    Add
-                                </v-btn>
-                            </v-row>
-
-                            <!-- 追加完了メッセージ -->
-                            <v-snackbar v-model="snackbar" top right>
-                                {{ snackbarMessage }}
-                                <v-btn color="red" text @click="snackbar = false">Close</v-btn>
-                            </v-snackbar>
-                        </v-tab-item>
-
-                        <!-- Search Outfit Tab -->
-                        <v-tab-item>
-                            <v-row class="mb-3 mt-3" justify="center">
-                                <v-col cols="5" class="input-field">
-                                    <v-select v-model="Temperature" :items="['寒い','快適','暑い']" label="Temperature" placeholder="Select Temperature..." outlined>
-                                    </v-select>
-                                </v-col>
-                            </v-row>
-                            <v-row class="mb-3 mt-3" justify="center">
-                                <v-btn v-on:click="readData2" rounded class="instagram-btn">
-                                    <v-icon left>mdi-magnify</v-icon>
-                                    Search
-                                </v-btn>
-                            </v-row>
-                            <v-row class="mb-3 mt-3" justify="center">
-                                <v-col cols="4" v-for="(data, index) in dataList2" :key="index">
-                                    <v-card max-width="300px" class="instagram-card">
-                                        <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
-                                        <v-card-title class="instagram-title">
-                                            Temperature: {{ data.Temperature }}<br>
-                                            Item: {{ data.Item }}
-                                        </v-card-title>
-                                        <v-card-actions class="instagram-actions">
-                                            <v-btn icon v-on:click="toggleLike(index, 'dataList2')">
-                                                <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
-                                            </v-btn>
-                                            <v-spacer></v-spacer>
-                                            <v-btn icon v-on:click="deleteData(index, 'dataList2')" style="margin-left: 20px;">
-                                                <v-icon>mdi-trash-can</v-icon>
-                                            </v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
-                        </v-tab-item>
-
-                        <!-- Display All Tab -->
-                        <v-tab-item>
-                            <v-row class="mb-8 mt-8" justify="center">
-                                <v-btn v-on:click="readData" rounded class="instagram-btn">
-                                    <v-icon left>mdi-view-grid</v-icon>
-                                    Display
-                                </v-btn>
-                            </v-row>
-                            <v-row class="mb-3 mt-3" justify="center">
-                                <v-col cols="4" v-for="(data, index) in dataList" :key="index">
-                                    <v-card max-width="300px" class="instagram-card">
-                                        <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
-                                        <v-card-title class="instagram-title">
-                                            Temperature: {{ data.Temperature }}<br>
-                                            Item: {{ data.Item }}
-                                        </v-card-title>
-                                        <v-card-actions class="instagram-actions">
-                                            <v-btn icon v-on:click="toggleLike(index)">
-                                                <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
-                                            </v-btn>
-                                            <v-spacer></v-spacer>
-                                            <v-btn icon v-on:click="deleteData(index)" style="margin-left: 20px;">
-                                                <v-icon>mdi-trash-can</v-icon>
-                                            </v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
-                        </v-tab-item>
-
-                        <!-- ダイアログコンポーネント -->
-                        <v-dialog v-model="dialog" max-width="600px">
-                            <v-img :src="dialogImageUrl" contain></v-img>
-                        </v-dialog>
-
-                </v-container>
+                <div class="home-container">
+                    <div class="home-title">Welcome to Climate Closet</div>
+                    <div class="home-buttons">
+                        <v-btn class="instagram-btn" href="add-outfit.html">Add Outfit</v-btn>
+                        <v-btn class="instagram-btn" href="search-outfit.html">Search Outfit</v-btn>
+                        <v-btn class="instagram-btn" href="display-all.html">Display All</v-btn>
+                    </div>
+                </div>
+                <div class="footer">
+                    © 2024 Climate Closet. All rights reserved.
+                </div>
             </v-content>
         </v-app>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script>
-    <script src="./script.js"></script>
 </body>
 </html>
