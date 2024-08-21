@@ -2,16 +2,16 @@ const app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-        tab: 0, // タブの状態を管理するための変数
+        tab: 0,
         Temperature: '',
         Item: '',
         Imageurl: '',
         dataList: [],
         dataList2: [],
-        snackbar: false, // スナックバーの表示制御用
-        snackbarMessage: '', // スナックバーに表示するメッセージ
-        dialog: false, // ダイアログの表示制御用
-        dialogImageUrl: '', // ダイアログに表示する画像のURL
+        snackbar: false,
+        snackbarMessage: '',
+        dialog: false,
+        dialogImageUrl: '',
     },
     methods: {
         addData: async function () {
@@ -27,19 +27,16 @@ const app = new Vue({
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/INSERT', param);
             console.log(response.data);
 
-            // 成功時にスナックバーを表示
             this.snackbarMessage = 'Outfit added successfully!';
             this.snackbar = true;
 
-            // 入力フィールドをクリア
             this.Temperature = '';
             this.Item = '';
             this.Imageurl = '';
         },
         readData: async function () {
             const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
-            console.log(response.data);
-            this.dataList = response.data.List;
+            this.dataList = response.data.List.map(item => ({ ...item, liked: false, saved: false }));
         },
         readData2: async function () {
             if (!this.Temperature) {
@@ -50,8 +47,7 @@ const app = new Vue({
                 Temperature: this.Temperature,
             };
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
-            console.log(response.data);
-            this.dataList2 = response.data.List;
+            this.dataList2 = response.data.List.map(item => ({ ...item, liked: false, saved: false }));
         },
         deleteData: async function (index) {
             const itemToDelete = this.dataList[index];
@@ -64,15 +60,20 @@ const app = new Vue({
                 Item: itemToDelete.Item,
                 Imageurl: itemToDelete.Imageurl
             };
-            const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
-            console.log(response.data);
-
-            // 削除が成功した場合、ローカルのdataListからアイテムを削除
+            await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
             this.dataList.splice(index, 1);
         },
         openDialog: function (imageUrl) {
             this.dialogImageUrl = imageUrl;
             this.dialog = true;
         },
+        toggleLike: function (index) {
+            this.dataList[index].liked = !this.dataList[index].liked;
+        },
+        saveOutfit: function (index) {
+            this.dataList[index].saved = !this.dataList[index].saved;
+            this.snackbarMessage = this.dataList[index].saved ? 'Outfit saved!' : 'Outfit unsaved!';
+            this.snackbar = true;
+        }
     },
 });

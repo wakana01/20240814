@@ -122,23 +122,29 @@
                                             Item: {{ data.Item }}
                                         </v-card-title>
                                         <v-card-actions class="instagram-actions">
+                                            <v-btn icon v-on:click="toggleLike(index)">
+                                                <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
+                                            </v-btn>
                                             <v-spacer></v-spacer>
-                                            <v-btn v-on:click="deleteData(index)" rounded style="margin-left: 20px;">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                            <v-btn icon v-on:click="saveOutfit(index)">
+                                                <v-icon color="blue">mdi-bookmark</v-icon>
+                                            </v-btn>
+                                            <v-btn icon v-on:click="deleteData(index)" style="margin-left: 20px;">
+                                                <v-icon>mdi-trash-can</v-icon>
                                             </v-btn>
                                         </v-card-actions>
                                     </v-card>
                                 </v-col>
                             </v-row>
                         </v-tab-item>
-                    </v-tabs-items>
 
-                    <!-- ダイアログコンポーネント -->
-                    <v-dialog v-model="dialog" max-width="600px">
-                        <v-img :src="dialogImageUrl" contain></v-img>
-                    </v-dialog>
 
-                </v-container>
+                        <!-- ダイアログコンポーネント -->
+                        <v-dialog v-model="dialog" max-width="600px">
+                            <v-img :src="dialogImageUrl" contain></v-img>
+                        </v-dialog>
+
+</v-container>
             </v-content>
         </v-app>
     </div>
