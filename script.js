@@ -8,6 +8,8 @@ const app = new Vue({
         Imageurl: '',
         dataList: [],
         dataList2: [],
+        snackbar: false, // スナックバーの表示制御用
+        snackbarMessage: '', // スナックバーに表示するメッセージ
     },
     methods: {
         addData: async function () {
@@ -22,6 +24,15 @@ const app = new Vue({
             };
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/INSERT', param);
             console.log(response.data);
+
+            // 成功時にスナックバーを表示
+            this.snackbarMessage = 'Outfit added successfully!';
+            this.snackbar = true;
+
+            // 入力フィールドをクリア
+            this.Temperature = '';
+            this.Item = '';
+            this.Imageurl = '';
         },
         readData: async function () {
             const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
@@ -53,8 +64,10 @@ const app = new Vue({
             };
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
             console.log(response.data);
-            // 削除が成功した場合、ローカルのdataList2からアイテムを削除
+
+            // 削除が成功した場合、ローカルのdataListからアイテムを削除
             this.dataList.splice(index, 1);
+
         },
     },
 });

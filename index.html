@@ -72,6 +72,12 @@
                                     <i class="fa-solid fa-plus"></i>
                                 </v-btn>
                             </v-row>
+
+                            <!-- 追加完了メッセージ -->
+                            <v-snackbar v-model="snackbar" top right>
+                                Outfit added successfully!
+                                <v-btn color="red" text @click="snackbar = false">Close</v-btn>
+                            </v-snackbar>
                         </v-tab-item>
 
                         <!-- Search Outfit Tab -->
