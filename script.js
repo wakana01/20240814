@@ -6,8 +6,7 @@ const app = new Vue({
         Temperature: '',
         Item: '',
         Imageurl: '',
-        dataList: [],
-        dataList2: [],
+        dataList: [], // 共通のデータリスト
         snackbar: false,
         snackbarMessage: '',
         dialog: false,
@@ -38,7 +37,7 @@ const app = new Vue({
             const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
             const newData = response.data.List.map(item => {
                 const existingItem = this.dataList.find(oldItem => oldItem.Imageurl === item.Imageurl);
-                return existingItem ? { ...item, liked: existingItem.liked, saved: existingItem.saved } : { ...item, liked: false, saved: false };
+                return existingItem ? { ...item, liked: existingItem.liked } : { ...item, liked: false };
             });
             this.dataList = newData;
         },
@@ -51,11 +50,14 @@ const app = new Vue({
                 Temperature: this.Temperature,
             };
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
-            this.dataList2 = response.data.List.map(item => ({ ...item, liked: false, saved: false }));
+            const newData = response.data.List.map(item => {
+                const existingItem = this.dataList.find(oldItem => oldItem.Imageurl === item.Imageurl);
+                return existingItem ? { ...item, liked: existingItem.liked } : { ...item, liked: false };
+            });
+            this.dataList = newData;
         },
-        deleteData: async function (index, listType = 'dataList') {
-            const list = listType === 'dataList' ? this.dataList : this.dataList2;
-            const itemToDelete = list[index];
+        deleteData: async function (index) {
+            const itemToDelete = this.dataList[index];
             if (!itemToDelete) {
                 console.log("削除対象が見つかりません");
                 return;
@@ -66,15 +68,14 @@ const app = new Vue({
                 Imageurl: itemToDelete.Imageurl
             };
             await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
-            list.splice(index, 1);
+            this.dataList.splice(index, 1);
         },
         openDialog: function (imageUrl) {
             this.dialogImageUrl = imageUrl;
             this.dialog = true;
         },
-        toggleLike: function (index, listType = 'dataList') {
-            const list = listType === 'dataList' ? this.dataList : this.dataList2;
-            list[index].liked = !list[index].liked;
+        toggleLike: function (index) {
+            this.dataList[index].liked = !this.dataList[index].liked;
         },
     },
 });
