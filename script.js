@@ -70,10 +70,6 @@ const app = new Vue({
         toggleLike: function (index) {
             this.dataList[index].liked = !this.dataList[index].liked;
         },
-        saveOutfit: function (index) {
-            this.dataList[index].saved = !this.dataList[index].saved;
-            this.snackbarMessage = this.dataList[index].saved ? 'Outfit saved!' : 'Outfit unsaved!';
-            this.snackbar = true;
-        }
+        
     },
 });
