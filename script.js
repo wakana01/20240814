@@ -36,7 +36,11 @@ const app = new Vue({
         },
         readData: async function () {
             const response = await axios.get('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT');
-            this.dataList = response.data.List.map(item => ({ ...item, liked: false, saved: false }));
+            const newData = response.data.List.map(item => {
+                const existingItem = this.dataList.find(oldItem => oldItem.Imageurl === item.Imageurl);
+                return existingItem ? { ...item, liked: existingItem.liked, saved: existingItem.saved } : { ...item, liked: false, saved: false };
+            });
+            this.dataList = newData;
         },
         readData2: async function () {
             if (!this.Temperature) {
@@ -49,8 +53,9 @@ const app = new Vue({
             const response = await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/SELECT2', param);
             this.dataList2 = response.data.List.map(item => ({ ...item, liked: false, saved: false }));
         },
-        deleteData: async function (index) {
-            const itemToDelete = this.dataList[index];
+        deleteData: async function (index, listType = 'dataList') {
+            const list = listType === 'dataList' ? this.dataList : this.dataList2;
+            const itemToDelete = list[index];
             if (!itemToDelete) {
                 console.log("削除対象が見つかりません");
                 return;
@@ -61,15 +66,15 @@ const app = new Vue({
                 Imageurl: itemToDelete.Imageurl
             };
             await axios.post('https://m3h-tanabe2-functionapi.azurewebsites.net/api/DELETE', param);
-            this.dataList.splice(index, 1);
+            list.splice(index, 1);
         },
         openDialog: function (imageUrl) {
             this.dialogImageUrl = imageUrl;
             this.dialog = true;
         },
-        toggleLike: function (index) {
-            this.dataList[index].liked = !this.dataList[index].liked;
+        toggleLike: function (index, listType = 'dataList') {
+            const list = listType === 'dataList' ? this.dataList : this.dataList2;
+            list[index].liked = !list[index].liked;
         },
-        
     },
 });
