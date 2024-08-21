@@ -74,5 +74,8 @@ const app = new Vue({
             this.dialogImageUrl = imageUrl;
             this.dialog = true;
         },
+        toggleLike: function (index) {
+            this.dataList[index].liked = !this.dataList[index].liked;
+        // ここで、サーバーに「いいね」状態の変更を送信することもできます
     },
 });
