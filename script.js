@@ -68,9 +68,6 @@ const app = new Vue({
             // 削除が成功した場合、ローカルのdataListからアイテムを削除
             this.dataList.splice(index, 1);
 
-            // 成功時にスナックバーを表示
-            this.snackbarMessage = 'Outfit deleted successfully!';
-            this.snackbar = true;
         },
     },
 });
