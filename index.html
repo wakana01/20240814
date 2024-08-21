@@ -12,12 +12,15 @@
         /* Instagram風のフォントスタイル */
         .instagram-card {
             font-family: 'Roboto', 'Arial', sans-serif;
+            border: 1px solid #dbdbdb; /* Instagramのカード風に */
+            border-radius: 10px; /* カードの角を丸く */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影をつける */
         }
 
         /* タイトルのスタイル */
         .instagram-title {
             font-weight: 600; /* 太字にする */
-            font-size: 1.2rem; /* フォントサイズを調整 */
+            font-size: 1rem; /* フォントサイズを調整 */
             color: #262626; /* Instagram風の濃いグレー */
         }
 
@@ -27,9 +30,20 @@
             color: #8e8e8e; /* 少し薄いグレー */
         }
 
-        /* ボタンのスタイル */
-        v-btn {
-            font-weight: 500; /* ボタンのフォントを少し太めに */
+        /* ダイアログのスタイル */
+        .v-dialog__content--active {
+            background-color: #000000a3; /* ダイアログの背景色を暗く */
+        }
+
+        /* タブのスタイル */
+        .v-tab {
+            text-transform: uppercase; /* 大文字にする */
+            font-weight: 500; /* 太字にする */
+        }
+
+        .v-tab--active {
+            color: #262626; /* アクティブなタブの色 */
+            border-bottom: 2px solid #262626; /* アクティブなタブの下に線を引く */
         }
     </style>
 
@@ -40,14 +54,14 @@
             <v-content>
                 <v-container>
                     <v-row class="text-h3 mb-3 mt-5" justify="center">
-                        <i class="fa-solid fa-temperature-three-quarters"></i>Climate Closet
+                        <i class="fa-solid fa-temperature-three-quarters"></i> Climate Closet
                     </v-row>
 
                     <!-- タブの追加 -->
-                    <v-tabs v-model="tab">
-                        <v-tab> Add Outfit </v-tab>
-                        <v-tab> Search Outfit </v-tab>
-                        <v-tab> Display All </v-tab>
+                    <v-tabs v-model="tab" background-color="white">
+                        <v-tab>Add Outfit</v-tab>
+                        <v-tab>Search Outfit</v-tab>
+                        <v-tab>Display All</v-tab>
                     </v-tabs>
 
                     <v-tabs-items v-model="tab">
@@ -59,11 +73,11 @@
                                     </v-select>
                                 </v-col>
                                 <v-col cols="2" class="input-field">
-                                    <v-text-field v-model:value="Item" label="Item" placeholder="Enter Item..." outlined>
+                                    <v-text-field v-model="Item" label="Item" placeholder="Enter Item..." outlined>
                                     </v-text-field>
                                 </v-col>
                                 <v-col cols="5" class="input-field">
-                                    <v-text-field v-model:value="Imageurl" label="Image URL" placeholder="Enter Image URL..." outlined>
+                                    <v-text-field v-model="Imageurl" label="Image URL" placeholder="Enter Image URL..." outlined>
                                     </v-text-field>
                                 </v-col>
                             </v-row>
@@ -90,14 +104,14 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData2" rounded>
-                                    <i class="fa-solid fa-magnifying-glass"></i>SEARCH
+                                    <i class="fa-solid fa-magnifying-glass"></i> SEARCH
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-col cols="4" v-for="(data, index) in dataList2" :key="index">
                                     <v-card max-width="300px" class="instagram-card">
                                         <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
-                                        <v-card-title class="instagram-title" style="text-align: left; font-size: 0.9rem;">
+                                        <v-card-title class="instagram-title">
                                             Temperature: {{ data.Temperature }}<br>
                                             Item: {{ data.Item }}
                                         </v-card-title>
@@ -106,7 +120,6 @@
                                                 <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
                                             </v-btn>
                                             <v-spacer></v-spacer>
-
                                             <v-btn icon v-on:click="deleteData(index, 'dataList2')" style="margin-left: 20px;">
                                                 <v-icon>mdi-trash-can</v-icon>
                                             </v-btn>
@@ -127,7 +140,7 @@
                                 <v-col cols="4" v-for="(data, index) in dataList" :key="index">
                                     <v-card max-width="300px" class="instagram-card">
                                         <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
-                                        <v-card-title class="instagram-title" style="text-align: left; font-size: 0.9rem;">
+                                        <v-card-title class="instagram-title">
                                             Temperature: {{ data.Temperature }}<br>
                                             Item: {{ data.Item }}
                                         </v-card-title>
@@ -136,7 +149,6 @@
                                                 <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
                                             </v-btn>
                                             <v-spacer></v-spacer>
-
                                             <v-btn icon v-on:click="deleteData(index)" style="margin-left: 20px;">
                                                 <v-icon>mdi-trash-can</v-icon>
                                             </v-btn>
@@ -145,7 +157,6 @@
                                 </v-col>
                             </v-row>
                         </v-tab-item>
-
 
                         <!-- ダイアログコンポーネント -->
                         <v-dialog v-model="dialog" max-width="600px">
