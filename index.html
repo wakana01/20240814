@@ -6,8 +6,78 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
     <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
+
     <style>
-        /* 既存のスタイルは省略 */
+        /* Instagram風のフォントスタイル */
+        .instagram-card {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            border: 1px solid #dbdbdb;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* タイトルのスタイル */
+        .instagram-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #262626;
+        }
+
+        /* アクション部分のスタイル */
+        .instagram-actions {
+            font-size: 0.9rem;
+            color: #8e8e8e;
+        }
+
+        /* ダイアログのスタイル */
+        .v-dialog__content--active {
+            background-color: #000000a3;
+        }
+
+        /* タブのスタイル */
+        .v-tab {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .v-tab--active {
+            color: #262626;
+            border-bottom: 2px solid #262626;
+        }
+
+        /* Instagram風のボタンスタイル */
+        .instagram-btn {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            border-radius: 24px;
+            padding: 8px 16px;
+            background-color: white;
+            color: #b0b0b0;
+            border: 1px solid #e0e0e0;
+        }
+
+            .instagram-btn:hover {
+                background-color: #f0f0f0;
+                color: #000;
+                border-color: #d0d0d0;
+            }
+
+            .instagram-btn .v-icon {
+                color: #b0b0b0;
+            }
+
+        /* Instagram風のタイトルスタイル */
+        .instagram-title-row {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #262626;
+            text-align: center;
+            margin: 2rem 0;
+            letter-spacing: 0.5px;
+        }
 
         /* ホーム画面のレイアウト */
         .home-container {
@@ -53,6 +123,7 @@
     <div id="app">
         <v-app>
             <v-content>
+                <!-- ホーム画面のメインコンテンツ -->
                 <div class="home-container">
                     <div class="home-title">Welcome to Climate Closet</div>
                     <div class="home-buttons">
@@ -61,6 +132,7 @@
                         <v-btn class="instagram-btn" href="display-all.html">Display All</v-btn>
                     </div>
                 </div>
+                <!-- フッター -->
                 <div class="footer">
                     © 2024 Climate Closet. All rights reserved.
                 </div>
