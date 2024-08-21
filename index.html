@@ -72,12 +72,6 @@
                                     <i class="fa-solid fa-plus"></i>
                                 </v-btn>
                             </v-row>
-
-                            <!-- 追加完了メッセージ -->
-                            <v-snackbar v-model="snackbar" top right>
-                                Outfit added successfully!
-                                <v-btn color="red" text @click="snackbar = false">Close</v-btn>
-                            </v-snackbar>
                         </v-tab-item>
 
                         <!-- Search Outfit Tab -->
@@ -132,18 +126,10 @@
                                         </v-card-actions>
                                     </v-card>
                                 </v-col>
+
                             </v-row>
                         </v-tab-item>
                     </v-tabs-items>
-                    <v-dialog v-model="dialog" max-width="600px">
-                        <v-card>
-                            <v-img :src="selectedImage" aspect-ratio="1.5" contain></v-img>
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn color="red" text @click="dialog = false">Close</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
                 </v-container>
             </v-content>
         </v-app>
