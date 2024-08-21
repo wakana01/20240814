@@ -96,18 +96,15 @@
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-col cols="4" v-for="(data, index) in dataList2" :key="index">
                                     <v-card max-width="300px" class="instagram-card">
-                                        <v-img :src="data.Imageurl" height="200px" contain></v-img>
+                                        <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
                                         <v-card-title class="instagram-title" style="text-align: left; font-size: 0.9rem;">
                                             Temperature: {{ data.Temperature }}<br>
                                             Item: {{ data.Item }}
                                         </v-card-title>
                                     </v-card>
                                 </v-col>
-
                             </v-row>
                         </v-tab-item>
-
-
 
                         <!-- Display All Tab -->
                         <v-tab-item>
@@ -119,7 +116,7 @@
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-col cols="4" v-for="(data, index) in dataList" :key="index">
                                     <v-card max-width="300px" class="instagram-card">
-                                        <v-img :src="data.Imageurl" height="200px" contain></v-img>
+                                        <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
                                         <v-card-title class="instagram-title" style="text-align: left; font-size: 0.9rem;">
                                             Temperature: {{ data.Temperature }}<br>
                                             Item: {{ data.Item }}
@@ -132,10 +129,15 @@
                                         </v-card-actions>
                                     </v-card>
                                 </v-col>
-
                             </v-row>
                         </v-tab-item>
                     </v-tabs-items>
+
+                    <!-- ダイアログコンポーネント -->
+                    <v-dialog v-model="dialog" max-width="600px">
+                        <v-img :src="dialogImageUrl" contain></v-img>
+                    </v-dialog>
+
                 </v-container>
             </v-content>
         </v-app>

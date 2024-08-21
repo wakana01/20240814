@@ -10,6 +10,8 @@ const app = new Vue({
         dataList2: [],
         snackbar: false, // スナックバーの表示制御用
         snackbarMessage: '', // スナックバーに表示するメッセージ
+        dialog: false, // ダイアログの表示制御用
+        dialogImageUrl: '', // ダイアログに表示する画像のURL
     },
     methods: {
         addData: async function () {
@@ -67,7 +69,10 @@ const app = new Vue({
 
             // 削除が成功した場合、ローカルのdataListからアイテムを削除
             this.dataList.splice(index, 1);
-
+        },
+        openDialog: function (imageUrl) {
+            this.dialogImageUrl = imageUrl;
+            this.dialog = true;
         },
     },
 });
