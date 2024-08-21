@@ -9,43 +9,34 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
 
     <style>
-        /* Instagram風のフォントスタイル */
-        .instagram-card {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            border: 1px solid #dbdbdb; /* Instagramのカード風に */
-            border-radius: 10px; /* カードの角を丸く */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影をつける */
+        /* Instagram風のボタンスタイル */
+        .instagram-btn {
+            background-color: #0095f6; /* Instagramのボタンカラー */
+            color: white; /* ボタンの文字色 */
+            font-weight: 500; /* フォントを少し太めに */
+            text-transform: uppercase; /* 文字を大文字に */
+            border-radius: 30px; /* ボタンの角を丸く */
+            padding: 10px 20px; /* パディングの調整 */
+            transition: background-color 0.3s ease; /* 背景色のトランジション */
         }
 
-        /* タイトルのスタイル */
-        .instagram-title {
-            font-weight: 600; /* 太字にする */
-            font-size: 1rem; /* フォントサイズを調整 */
-            color: #262626; /* Instagram風の濃いグレー */
-        }
+            .instagram-btn:hover {
+                background-color: #007bb5; /* ホバー時の背景色 */
+            }
 
-        /* アクション部分のスタイル */
-        .instagram-actions {
-            font-size: 0.9rem; /* 少し小さめのフォント */
-            color: #8e8e8e; /* 少し薄いグレー */
-        }
-
-        /* ダイアログのスタイル */
-        .v-dialog__content--active {
-            background-color: #000000a3; /* ダイアログの背景色を暗く */
-        }
-
-        /* タブのスタイル */
+        /* タブのボタンスタイル */
         .v-tab {
             text-transform: uppercase; /* 大文字にする */
             font-weight: 500; /* 太字にする */
+            color: #0095f6; /* Instagram風のカラー */
         }
 
         .v-tab--active {
             color: #262626; /* アクティブなタブの色 */
-            border-bottom: 2px solid #262626; /* アクティブなタブの下に線を引く */
+            border-bottom: 2px solid #0095f6; /* アクティブなタブの下に線を引く */
         }
     </style>
+
 
 </head>
 <body>
@@ -54,7 +45,7 @@
             <v-content>
                 <v-container>
                     <v-row class="text-h3 mb-3 mt-5" justify="center">
-                        <i class="fa-solid fa-temperature-three-quarters"></i> Climate Closet
+                        Climate Closet
                     </v-row>
 
                     <!-- タブの追加 -->
