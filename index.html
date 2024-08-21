@@ -132,10 +132,18 @@
                                         </v-card-actions>
                                     </v-card>
                                 </v-col>
-
                             </v-row>
                         </v-tab-item>
                     </v-tabs-items>
+                    <v-dialog v-model="dialog" max-width="600px">
+                        <v-card>
+                            <v-img :src="selectedImage" aspect-ratio="1.5" contain></v-img>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="red" text @click="dialog = false">Close</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                 </v-container>
             </v-content>
         </v-app>
