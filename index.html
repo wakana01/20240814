@@ -16,20 +16,20 @@
 
         /* タイトルのスタイル */
         .instagram-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #262626;
+            font-weight: 600; /* 太字にする */
+            font-size: 1.2rem; /* フォントサイズを調整 */
+            color: #262626; /* Instagram風の濃いグレー */
         }
 
         /* アクション部分のスタイル */
         .instagram-actions {
-            font-size: 0.9rem;
-            color: #8e8e8e;
+            font-size: 0.9rem; /* 少し小さめのフォント */
+            color: #8e8e8e; /* 少し薄いグレー */
         }
 
         /* ボタンのスタイル */
         v-btn {
-            font-weight: 500;
+            font-weight: 500; /* ボタンのフォントを少し太めに */
         }
     </style>
 
@@ -75,7 +75,7 @@
 
                             <!-- 追加完了メッセージ -->
                             <v-snackbar v-model="snackbar" top right>
-                                Outfit added successfully!
+                                {{ snackbarMessage }}
                                 <v-btn color="red" text @click="snackbar = false">Close</v-btn>
                             </v-snackbar>
                         </v-tab-item>
@@ -94,7 +94,7 @@
                                 </v-btn>
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
-                                <v-col cols="4" v-for="(data, index) in dataList" :key="index">
+                                <v-col cols="4" v-for="(data, index) in dataList2" :key="index">
                                     <v-card max-width="300px" class="instagram-card">
                                         <v-img :src="data.Imageurl" height="200px" contain @click="openDialog(data.Imageurl)"></v-img>
                                         <v-card-title class="instagram-title" style="text-align: left; font-size: 0.9rem;">
@@ -102,12 +102,12 @@
                                             Item: {{ data.Item }}
                                         </v-card-title>
                                         <v-card-actions class="instagram-actions">
-                                            <v-btn icon v-on:click="toggleLike(index)">
+                                            <v-btn icon v-on:click="toggleLike(index, 'dataList2')">
                                                 <v-icon :color="data.liked ? 'red' : 'grey'">mdi-heart</v-icon>
                                             </v-btn>
                                             <v-spacer></v-spacer>
 
-                                            <v-btn icon v-on:click="deleteData(index)" style="margin-left: 20px;">
+                                            <v-btn icon v-on:click="deleteData(index, 'dataList2')" style="margin-left: 20px;">
                                                 <v-icon>mdi-trash-can</v-icon>
                                             </v-btn>
                                         </v-card-actions>
@@ -145,6 +145,7 @@
                                 </v-col>
                             </v-row>
                         </v-tab-item>
+
 
                         <!-- ダイアログコンポーネント -->
                         <v-dialog v-model="dialog" max-width="600px">
