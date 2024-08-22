@@ -111,9 +111,15 @@
 
                     <!-- タブの追加 -->
                     <v-tabs v-model="tab" background-color="white">
-                        <v-tab>Display All</v-tab>
-                        <v-tab>Search Outfit</v-tab>
-                        <v-tab>Add Outfit</v-tab>
+                        <v-tab>
+                            <v-icon>mdi-home</v-icon>
+                        </v-tab>
+                        <v-tab>
+                            <v-icon>mdi-magnify</v-icon>
+                        </v-tab>
+                        <v-tab>
+                            <v-icon>mdi-plus</v-icon>
+                        </v-tab>
                     </v-tabs>
 
                     <v-tabs-items v-model="tab">
@@ -154,7 +160,6 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="readData2" rounded class="instagram-btn">
-                                    <v-icon left>mdi-magnify</v-icon>
                                     Search
                                 </v-btn>
                             </v-row>
@@ -199,7 +204,6 @@
                             </v-row>
                             <v-row class="mb-3 mt-3" justify="center">
                                 <v-btn v-on:click="addData" rounded class="instagram-btn">
-                                    <v-icon left>mdi-plus</v-icon>
                                     Add
                                 </v-btn>
                             </v-row>
