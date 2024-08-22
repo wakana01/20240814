@@ -8,55 +8,7 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' />
     <style>
-        /* ヘッダーのスタイル */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: white;
-            border-bottom: 1px solid #e0e0e0;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #262626;
-            margin: 1rem 0;
-        }
-
-        .header-tabs {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-            .header-tabs .v-tab {
-                color: #000; /* 黒 */
-                text-transform: uppercase;
-                font-weight: 500;
-                border-bottom: 2px solid transparent;
-                padding: 12px 20px;
-            }
-
-            .header-tabs .v-tab--active {
-                color: #007bff;
-                border-bottom: 2px solid #007bff;
-            }
-
-            .header-tabs .v-tab:hover {
-                background-color: #f5f5f5; /* グレー */
-            }
-
-        .v-content {
-            margin-top: 120px; /* ヘッダーの高さに合わせて調整 */
-        }
-
-        /* Instagram風のカードスタイル */
+        /* Instagram風のフォントスタイル */
         .instagram-card {
             font-family: 'Roboto', 'Arial', sans-serif;
             border: 1px solid #dbdbdb;
@@ -79,6 +31,34 @@
             background-color: #000000a3;
         }
 
+        .v-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .v-tab {
+            color: #000; /* 黒 */
+            text-transform: uppercase;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            padding: 12px 20px;
+        }
+
+        .v-tab--active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .v-tabs-slider {
+            background-color: transparent; /* スライダーは透明にしてタブの下線だけ表示 */
+        }
+
+        .v-tab:hover {
+            background-color: #f5f5f5; /* グレー */
+        }
+
         .instagram-btn {
             font-size: 0.9rem;
             font-weight: 500;
@@ -89,6 +69,8 @@
             color: #007bff;
             border: 1px solid #e0e0e0;
         }
+
+
 
             .instagram-btn:hover {
                 background-color: #f5f5f5; /* グレー */
@@ -123,26 +105,24 @@
 <body>
     <div id="app">
         <v-app>
-            <header class="header">
-                <div class="header-title">Welcome to Climate Closet</div>
-                <v-tabs v-model="tab" class="header-tabs" background-color="white">
-                    <v-tab>
-                        <v-icon>mdi-home</v-icon>
-                    </v-tab>
-                    <v-tab>
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-tab>
-                    <v-tab>
-                        <v-icon>mdi-plus</v-icon>
-                    </v-tab>
-                </v-tabs>
-            </header>
-
             <v-content>
                 <v-container>
                     <v-row class="instagram-title-row">
-                        <!-- タイトルはヘッダーに移動したので不要 -->
+                        Welcome to Climate Closet
                     </v-row>
+
+                    <!-- タブの追加 -->
+                    <v-tabs v-model="tab" background-color="white">
+                        <v-tab>
+                            <v-icon>mdi-home</v-icon>
+                        </v-tab>
+                        <v-tab>
+                            <v-icon>mdi-magnify</v-icon>
+                        </v-tab>
+                        <v-tab>
+                            <v-icon>mdi-plus</v-icon>
+                        </v-tab>
+                    </v-tabs>
 
                     <v-tabs-items v-model="tab">
                         <!-- Display All Tab -->
@@ -231,18 +211,24 @@
                             </v-row>
 
                             <!-- 追加完了メッセージ -->
-                            <v-snackbar v-model="snackbar" top>
+                            <v-snackbar v-model="snackbar" top right>
                                 {{ snackbarMessage }}
-                                <v-btn color="white" text @click="snackbar = false">Close</v-btn>
+                                <v-btn color="red" text @click="snackbar = false">Close</v-btn>
                             </v-snackbar>
                         </v-tab-item>
+
+                        <!-- ダイアログコンポーネント -->
+                        <v-dialog v-model="dialog" max-width="600px">
+                            <v-img :src="dialogImageUrl"></v-img>
+                        </v-dialog>
                     </v-tabs-items>
                 </v-container>
-            </v-content>
 
-            <footer class="footer">
-                <div>© 2024 Climate Closet. All rights reserved.</div>
-            </footer>
+                <!-- フッターの追加 -->
+                <footer class="footer">
+                    <div>© 2024 Climate Closet. All rights reserved.</div>
+                </footer>
+            </v-content>
         </v-app>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
