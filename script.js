@@ -13,6 +13,13 @@ const app = new Vue({
         dialog: false,
         dialogImageUrl: '',
     },
+    watch: {
+        tab(newValue) {
+            if (newValue === 0) {
+                this.readData(); // `Display All`タブが選択された場合にデータを読み込む
+            }
+        }
+    },
     methods: {
         addData: async function () {
             if (!this.Temperature) {
